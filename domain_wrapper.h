@@ -1017,4 +1017,10 @@ virDomainGetGuestInfoWrapper(virDomainPtr domain,
 			     unsigned int flags,
                              virErrorPtr err);
 
+int
+virDomainLiveRenameWrapper(virDomainPtr domain,
+				const char *new_name,
+                unsigned int flags,
+                virErrorPtr err);
+
 #endif /* LIBVIRT_GO_DOMAIN_WRAPPER_H__ */

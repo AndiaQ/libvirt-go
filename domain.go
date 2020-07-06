@@ -1397,6 +1397,15 @@ func (d *Domain) UndefineFlags(flags DomainUndefineFlagsValues) error {
 	return nil
 }
 
+func (d *Domain) LiveRename(newName string, flags uint32) error {
+	var err C.virError
+	result := C.virDomainLiveRenameWrapper(d.ptr, C.CString(newName), C.uint(flags), &err)
+	if result == -1 {
+		return makeError(&err)
+	}
+	return nil
+}
+
 // See also https://libvirt.org/html/libvirt-libvirt-domain.html#virDomainSetMaxMemory
 func (d *Domain) SetMaxMemory(memory uint) error {
 	var err C.virError

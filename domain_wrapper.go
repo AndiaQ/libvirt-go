@@ -2419,5 +2419,17 @@ virDomainGetGuestInfoWrapper(virDomainPtr domain,
 #endif
 }
 
+int
+virDomainLiveRenameWrapper(virDomainPtr domain,
+				const char *new_name,
+                unsigned int flags,
+                virErrorPtr err)
+{
+    int ret = virDomainLiveRename(domain, new_name, flags);
+	if (ret < 0) {
+        virCopyLastError(err);
+	}
+	return ret;
+}
 */
 import "C"
